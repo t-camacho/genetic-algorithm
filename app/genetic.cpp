@@ -14,9 +14,18 @@ int main() {
   
   Population *population = 
     new Population(mutationRate, popmax, target);
-
-  population->print();
-  population->naturalSelection();
-  population->generate();
+  
+  int f = 0;
+  while(f < 16) {
+    population->naturalSelection();
+    population->generate();
+    population->calcFitness();
+    
+    //if(population->isFinished()) {
+     // break;
+    //}
+    f++;
+  }
+  population->print(); 
   return 0;
 }

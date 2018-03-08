@@ -38,12 +38,24 @@ char DNA::newChar() {
 void DNA::calcFitness() {
   int total = 0;
   char *phrase = target->getPhrase();  
+  
   for(int i = 0; i < target->getLength(); i++) {
     if(this->genes[i] == phrase[i]) {
       total++;
     }
   }
-//  std::cout << total << std::endl;
-//  std::cout << target->getLength();  
+  
   this->fitness = (float)total / (float)target->getLength();
+}
+
+DNA* DNA::crossover(DNA *parent) {
+  DNA *child =  new DNA(this->mutationRate, this->target);
+  int midpoint = rand() % target->getLength();
+  
+  for(int i = 0; i < target->getLength(); i++) {
+    if(i < midpoint) child->genes[i] = this->genes[i];
+    else child->genes[i] = parent->genes[i];
+  } 
+  
+  return child;
 }

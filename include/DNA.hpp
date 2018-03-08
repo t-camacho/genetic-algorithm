@@ -16,6 +16,7 @@ class DNA {
     float getFitness();
     char newChar();
     void calcFitness();
+    DNA* crossover(DNA* parent);
 };
 
 #endif

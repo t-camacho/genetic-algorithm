@@ -20,6 +20,8 @@ class Population {
     Population(float mutationRate, int popmax, Target *target);
     void naturalSelection();
     void generate();
+    void calcFitness();
+    bool isFinished();
     void print();
 };
 
