@@ -18,7 +18,8 @@ class Population {
     DNA **chromosomes;
   public:
     Population(float mutationRate, int popmax, Target *target);
-    void select();
+    void naturalSelection();
+    void generate();
     void print();
 };
 

@@ -15,8 +15,8 @@ int main() {
   Population *population = 
     new Population(mutationRate, popmax, target);
 
-  population->select();
-
-  //population->print();
+  population->print();
+  population->naturalSelection();
+  population->generate();
   return 0;
 }

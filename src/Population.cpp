@@ -25,13 +25,13 @@ float map(float value, float maxFitness) {
   return value / maxFitness;
 }
 
-void Population::select() {
+void Population::naturalSelection() {
   float maxFitness = 0, buffer;
   int n;
 
-  matingPool.remove();
+  matingPool.erase(matingPool.begin(), matingPool.end());
 
-  for(int i = 0; i < this->target->getLength(); i++) {
+  for(int i = 0; i < target->getLength(); i++) {
     if(this->chromosomes[i]->getFitness() > maxFitness) {
       maxFitness = this->chromosomes[i]->getFitness();
     }
@@ -44,4 +44,28 @@ void Population::select() {
       matingPool.push_back(this->chromosomes[i]);
     }
   }
+}
+
+void Population::generate() {
+  std::list<DNA*>::iterator parentA, parentB;
+  int a, b;
+    
+  for(int i = 0; i < target->getLength(); i++) {
+    a = std::rand() % target->getLength();
+    b = std::rand() % target->getLength();
+  
+    parentA = matingPool.begin();
+    parentB = matingPool.begin();
+  
+    for(int i = 0; i < a; i++) {
+      parentA++;
+    }
+
+    for(int i = 0; i < b; i++) {
+      parentB++;
+    }
+
+    this->chromosomes[i] = (*parentA).crossover((*parentB));
+  }
+
 }
