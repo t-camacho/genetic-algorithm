@@ -9,6 +9,8 @@ class Target {
     char *phrase;
   public:
     Target(char *phrase);
+    int getLength();
+    char* getPhrase();
 };
 
 #endif

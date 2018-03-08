@@ -4,16 +4,21 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include <iomanip>
+#include <list>
 #include "DNA.hpp"
+#include "Target.hpp"
 
 class Population {
   private:
     float mutationRate;
-    int popmax, targetSize;
-    char *target;
+    int popmax;
+    std::list<DNA*> matingPool;
+    Target *target;
     DNA **chromosomes;
   public:
-    Population(float mutationRate, int popmax, char *target);
+    Population(float mutationRate, int popmax, Target *target);
+    void select();
     void print();
 };
 

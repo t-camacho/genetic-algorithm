@@ -3,16 +3,19 @@
 
 #include <iostream>
 #include <cstdlib>
+#include "Target.hpp"
 
 class DNA {
   private:
-    int targetSize;
+    Target *target;;
     float fitness, mutationRate;
     char *genes;
   public:
-    DNA(float mutationRate, int targetSize);
+    DNA(float mutationRate, Target *target);
     char* getGenes();
+    float getFitness();
     char newChar();
+    void calcFitness();
 };
 
 #endif
