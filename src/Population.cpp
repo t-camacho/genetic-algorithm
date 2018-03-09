@@ -41,7 +41,7 @@ void Population::naturalSelection() {
     for(int i = 0; i < popmax; i++) {
       buffer = map(this->chromosomes[i]->getFitness(), maxFitness);
       n = buffer * 100;
-      for(int i = 0; i < n; i++) {
+      for(int j = 0; j < n; j++) {
         matingPool.push_back(this->chromosomes[i]);
       }
     }
@@ -75,12 +75,17 @@ void Population::generate() {
     this->chromosomes[i]->mutation();
   }
 
+  this->generation++;
 }
 
 void Population::calcFitness() {
   for(int i = 0; i < popmax; i++) {
     this->chromosomes[i]->calcFitness();
   }
+}
+
+int Population::getGeneration() {
+  return this->generation;
 }
 
 bool Population::isFinished() {

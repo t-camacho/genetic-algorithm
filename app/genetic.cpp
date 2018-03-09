@@ -3,14 +3,27 @@
 #include "Target.hpp"
 #include "DNA.hpp"
 
-int main() {
+void display(Population *population) {
   DNA *best;
-  //char phrase[] = "To be or not to be\0";
-  char phrase[] = "Hello\0";
+
+  best = population->getBest();
+
+  std::cout << "total generations: " 
+    << population->getGeneration() << std::endl;
+
+  std::cout << std::fixed;
+  std::cout.precision(5);
+  std::cout << "      best phrase: " << best->getGenes() << " (" 
+    << best->getFitness() << ")" << std::endl;
+  std::cout << std::endl;
+}
+
+int main() {
+  char phrase[] = "To be or not to be\0";
   
   Target *target = new Target(phrase);
-  float mutationRate = 0.1;
-  int popmax = 200;
+  float mutationRate = 0.01;
+  int popmax = 150;
 
   
   std::srand(time(NULL));
@@ -18,22 +31,16 @@ int main() {
   Population *population = 
     new Population(mutationRate, popmax, target);
  
-  int f = 0;
-  while(f < 100) {
+  while(true) {
     population->naturalSelection();
     population->generate();
     population->calcFitness();
     
-    best = population->getBest();
-    std::cout << std::fixed;
-    std::cout.precision(5);
-    std::cout << best->getGenes() << " " << best->getFitness() << std::endl;
+    display(population);
 
     if(population->isFinished()) {
-      std::cout << "eend" << std::endl;
       break;
     }
-    //f++;
   }
   return 0;
 }

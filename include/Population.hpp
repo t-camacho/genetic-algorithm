@@ -12,7 +12,7 @@
 class Population {
   private:
     float mutationRate;
-    int popmax;
+    int popmax, generation;
     std::list<DNA*> matingPool;
     Target *target;
     DNA **chromosomes;
@@ -24,6 +24,7 @@ class Population {
     bool isFinished();
     DNA* getBest();
     void print();
+    int getGeneration();
 };
 
 #endif
