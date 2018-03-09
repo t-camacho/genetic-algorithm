@@ -17,6 +17,7 @@ class DNA {
     char newChar();
     void calcFitness();
     DNA* crossover(DNA* parent);
+    void mutation();
 };
 
 #endif

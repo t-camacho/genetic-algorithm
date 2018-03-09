@@ -22,6 +22,7 @@ class Population {
     void generate();
     void calcFitness();
     bool isFinished();
+    DNA* getBest();
     void print();
 };
 

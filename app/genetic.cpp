@@ -1,12 +1,15 @@
 #include <iostream>
 #include "Population.hpp"
 #include "Target.hpp"
+#include "DNA.hpp"
 
 int main() {
-  char phrase[] = "To be or not to be";
+  DNA *best;
+  //char phrase[] = "To be or not to be\0";
+  char phrase[] = "Hello\0";
   
   Target *target = new Target(phrase);
-  float mutationRate = 0.01;
+  float mutationRate = 0.1;
   int popmax = 200;
 
   
@@ -14,18 +17,23 @@ int main() {
   
   Population *population = 
     new Population(mutationRate, popmax, target);
-  
+ 
   int f = 0;
-  while(f < 16) {
+  while(f < 100) {
     population->naturalSelection();
     population->generate();
     population->calcFitness();
     
-    //if(population->isFinished()) {
-     // break;
-    //}
-    f++;
+    best = population->getBest();
+    std::cout << std::fixed;
+    std::cout.precision(5);
+    std::cout << best->getGenes() << " " << best->getFitness() << std::endl;
+
+    if(population->isFinished()) {
+      std::cout << "eend" << std::endl;
+      break;
+    }
+    //f++;
   }
-  population->print(); 
   return 0;
 }
