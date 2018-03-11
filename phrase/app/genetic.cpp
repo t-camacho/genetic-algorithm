@@ -23,7 +23,7 @@ int main() {
   
   Target *target = new Target(phrase);
   float mutationRate = 0.01;
-  int popmax = 150;
+  int popmax = 200;
 
   
   std::srand(time(NULL));

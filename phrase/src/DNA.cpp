@@ -37,8 +37,8 @@ char DNA::newChar() {
 }
 
 void DNA::calcFitness() {
-  int total = 0;
   char *phrase = target->getPhrase();  
+  int total = 0;
   
   for(int i = 0; i < target->getLength(); i++) {
     if(this->genes[i] == phrase[i]) {
@@ -47,6 +47,7 @@ void DNA::calcFitness() {
   }
   
   this->fitness = (float)total / (float)target->getLength();
+  this->fitness = pow(this->fitness, 4);
 }
 
 DNA* DNA::crossover(DNA *parent) {

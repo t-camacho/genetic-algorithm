@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 #include "Target.hpp"
 
 class DNA {
